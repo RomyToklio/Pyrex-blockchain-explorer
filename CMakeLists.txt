@@ -16,17 +16,17 @@ endif()
 
 
 if (NOT MONERO_DIR)
-    set(MONERO_DIR ~/monero)
+    set(MONERO_DIR ~/Pyrex)
 endif()
 
 message(STATUS MONERO_DIR ": ${MONERO_DIR}")
 
 set(MONERO_SOURCE_DIR ${MONERO_DIR}
-        CACHE PATH "Path to the root directory for Monero")
+        CACHE PATH "Path to the root directory for Pyrex")
 
 # set location of monero build tree
 set(MONERO_BUILD_DIR ${MONERO_SOURCE_DIR}/build/release/
-        CACHE PATH "Path to the build directory for Monero")
+        CACHE PATH "Path to the build directory for Pyrex")
 
 set(MY_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake"
         CACHE PATH "The path to the cmake directory of the current project")
