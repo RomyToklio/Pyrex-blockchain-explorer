@@ -169,10 +169,10 @@ main(int ac, const char* av[])
 
     string deamon_url {*deamon_url_opt};
 
-    if (testnet && deamon_url == "http:://127.0.0.1:18081")
-        deamon_url = "http:://127.0.0.1:28081";
-    if (stagenet && deamon_url == "http:://127.0.0.1:18081")
-        deamon_url = "http:://127.0.0.1:38081";
+    if (testnet && deamon_url == "http:://127.0.0.1:6870")
+        deamon_url = "http:://127.0.0.1:7870";
+    if (stagenet && deamon_url == "http:://127.0.0.1:6870")
+        deamon_url = "http:://127.0.0.1:8870";
 
     uint64_t mempool_info_timeout {5000};
 
@@ -193,7 +193,7 @@ main(int ac, const char* av[])
     {
         // This starts new thread, which aim is
         // to calculate, store and monitor
-        // current total Monero emission amount.
+        // current total Pyrexcoin emission amount.
 
         // This thread stores the current emission
         // which it has caluclated in
@@ -331,7 +331,7 @@ main(int ac, const char* av[])
             || post_body.count("viewkey") == 0
             || post_body.count("tx_hash") == 0)
         {
-            return string("xmr address, viewkey or tx hash not provided");
+            return string("PYX address, viewkey or tx hash not provided");
         }
 
         string tx_hash     = remove_bad_chars(post_body["tx_hash"]);
@@ -373,7 +373,7 @@ main(int ac, const char* av[])
                 || post_body.count("txprvkey") == 0
                 || post_body.count("txhash") == 0)
             {
-                return string("xmr address, tx private key or "
+                return string("PYX address, tx private key or "
                                       "tx hash not provided");
             }
 

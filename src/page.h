@@ -1659,7 +1659,7 @@ public:
 
         if (xmr_address_str.empty())
         {
-            return string("Monero address not provided!");
+            return string("Pyrexcoin address not provided!");
         }
 
         if (viewkey_str.empty())
@@ -1679,13 +1679,13 @@ public:
             return string("Cant get tx hash due to parse error: " + tx_hash_str);
         }
 
-        // parse string representing given monero address
+        // parse string representing given Pyrexcoin address
         cryptonote::address_parse_info address_info;
 
         if (!xmreg::parse_str_address(xmr_address_str,  address_info, nettype))
         {
             cerr << "Cant parse string address: " << xmr_address_str << endl;
-            return string("Cant parse xmr address: " + xmr_address_str);
+            return string("Cant parse PYX address: " + xmr_address_str);
         }
 
         // parse string representing given private key
@@ -3771,11 +3771,11 @@ public:
         result_html = default_txt;
 
 
-        // check if monero address is given based on its length
+        // check if Pyrexcoin address is given based on its length
         // if yes, then we can only show its public components
         if (search_str_length == 95)
         {
-            // parse string representing given monero address
+            // parse string representing given Pyrexcoin address
             address_parse_info address_info;
 
             cryptonote::network_type nettype_addr {cryptonote::network_type::MAINNET};
@@ -3795,7 +3795,7 @@ public:
             return show_address_details(address_info, nettype_addr);
         }
 
-        // check if integrated monero address is given based on its length
+        // check if integrated Pyrexcoin address is given based on its length
         // if yes, then show its public components search tx based on encrypted id
         if (search_str_length == 106)
         {
@@ -4316,7 +4316,7 @@ public:
             }
         }
 
-        // get raw tx json as in monero
+        // get raw tx json as in Pyrexcoin
 
         try
         {
@@ -4604,7 +4604,7 @@ public:
             return j_response;
         }
 
-        // get raw tx json as in monero
+        // get raw tx json as in Pyrexcoin
 
         try
         {
@@ -4948,7 +4948,7 @@ public:
         if (address_str.empty())
         {
             j_response["status"]  = "error";
-            j_response["message"] = "Monero address not provided";
+            j_response["message"] = "Pyrexcoin address not provided";
             return j_response;
         }
 
@@ -4979,13 +4979,13 @@ public:
             return j_response;
         }
 
-        // parse string representing given monero address
+        // parse string representing given Pyrexcoin address
         address_parse_info address_info;
 
         if (!xmreg::parse_str_address(address_str,  address_info, nettype))
         {
             j_response["status"]  = "error";
-            j_response["message"] = "Cant parse monero address: " + address_str;
+            j_response["message"] = "Cant parse Pyrexcoin address: " + address_str;
             return j_response;
 
         }
@@ -5173,7 +5173,7 @@ public:
         if (address_str.empty())
         {
             j_response["status"]  = "error";
-            j_response["message"] = "Monero address not provided";
+            j_response["message"] = "Pyrexcoin address not provided";
             return j_response;
         }
 
@@ -5184,13 +5184,13 @@ public:
             return j_response;
         }
 
-        // parse string representing given monero address
+        // parse string representing given Pyrexcoin address
         address_parse_info address_info;
 
         if (!xmreg::parse_str_address(address_str, address_info, nettype))
         {
             j_response["status"]  = "error";
-            j_response["message"] = "Cant parse monero address: " + address_str;
+            j_response["message"] = "Cant parse Pyrexcoin address: " + address_str;
             return j_response;
 
         }
@@ -5339,7 +5339,7 @@ public:
         if (!get_monero_network_info(j_info))
         {
             j_response["status"]  = "error";
-            j_response["message"] = "Cant get monero network info";
+            j_response["message"] = "Cant get Pyrexcoin network info";
             return j_response;
         }
 
