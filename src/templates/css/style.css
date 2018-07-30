@@ -3,8 +3,9 @@ body {
     padding: 0;
     color: white;
     background-color: black;
-    background-image: url(../assets/images/sld.jpg);
+    background-image: url(https://pyrexcoin.com/images/sld.jpg);
     background-size: auto;
+    background-attachment: fixed;
 }
 
 h1, h2, h3, h4, h5, h6 {
