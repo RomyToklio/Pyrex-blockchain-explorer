@@ -142,3 +142,9 @@ div#decoded-inputs{
 input#toggle-1[type=checkbox]:checked ~ div#decoded-inputs {
     display: block;
 }
+.mt20 {
+    margin-top: 20px;
+}
+.mb20 {
+    margin-bottom: 20px;
+}
