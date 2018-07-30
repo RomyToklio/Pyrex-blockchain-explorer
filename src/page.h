@@ -881,14 +881,12 @@ public:
         // perapre network info mstch::map for the front page
         string hash_rate;
 
-        if (testnet || stagenet)
-        {
-            hash_rate = std::to_string(current_network_info.hash_rate) + " H/s";
-        }
-        else
-        {
+        if (current_network_info.hash_rate > 1e6)
             hash_rate = fmt::format("{:0.3f} MH/s", current_network_info.hash_rate/1.0e6);
-        }
+        else if (current_network_info.hash_rate > 1e3)
+            hash_rate = fmt::format("{:0.3f} kH/s", current_network_info.hash_rate/1.0e3);
+        else
+            hash_rate = fmt::format("{:d} H/s", current_network_info.hash_rate);
 
         pair<string, string> network_info_age = get_age(local_copy_server_timestamp,
                                                         current_network_info.info_timestamp);
@@ -1595,6 +1593,48 @@ public:
 
         // render the page
         return mstch::render(template_file["tx"], context, partials);
+    }
+
+    string
+    show_tx_hex(string tx_hash_str)
+    {
+        crypto::hash tx_hash;
+
+        if (!epee::string_tools::hex_to_pod(tx_hash_str, tx_hash))
+        {
+            string msg = fmt::format("Cant parse {:s} as tx hash!", tx_hash_str);
+            cerr << msg << endl;
+            return msg;
+        }
+
+        // get transaction
+        transaction tx;
+
+        if (!mcore->get_tx(tx_hash, tx))
+        {
+            cerr << "Cant get tx in blockchain: " << tx_hash
+                 << ". \n Check mempool now" << endl;
+
+            vector<MempoolStatus::mempool_tx> found_txs;
+
+            search_mempool(tx_hash, found_txs);
+
+            if (found_txs.empty())
+            {
+                // tx is nowhere to be found :-(
+                return string("Cant get tx: " + tx_hash_str);
+            }
+        }
+
+        try
+        {
+            return tx_to_hex(tx);
+        }
+        catch (std::exception const& e)
+        {
+            cerr << e.what() << endl;
+            return string {"Failed to obtain hex of tx due to: "} + e.what();
+        }
     }
 
     string
@@ -6514,3 +6554,4 @@ private:
 
 
 #endif //CROWXMR_PAGE_H
+
