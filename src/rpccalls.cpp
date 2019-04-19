@@ -21,7 +21,7 @@ rpccalls::rpccalls(string _deamon_url,
 
     m_http_client.set_server(
             deamon_url,
-            boost::optional<epee::net_utils::http::login>{});
+            boost::optional<epee::net_utils::http::login>{}, epee::net_utils::ssl_support_t::e_ssl_support_disabled);
 }
 
 bool
@@ -275,9 +275,9 @@ rpccalls::get_dynamic_per_kb_fee_estimate(
         uint64_t& fee,
         string& error_msg)
 {
-    epee::json_rpc::request<COMMAND_RPC_GET_PER_KB_FEE_ESTIMATE::request>
+    epee::json_rpc::request<COMMAND_RPC_GET_BASE_FEE_ESTIMATE::request>
             req_t = AUTO_VAL_INIT(req_t);
-    epee::json_rpc::response<COMMAND_RPC_GET_PER_KB_FEE_ESTIMATE::response, std::string>
+    epee::json_rpc::response<COMMAND_RPC_GET_BASE_FEE_ESTIMATE::response, std::string>
             resp_t = AUTO_VAL_INIT(resp_t);
 
 
